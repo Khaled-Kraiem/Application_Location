@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<div class="row">
+		<a class="btn-save btn btn-success btn-sm btn-rounded" href="{{ path('edit_profil', {'id': user.id}) }}">
+			<i class="fas fa-edit"></i>
+		</a>
+	</div>
+	<br>
+	<br>
+	<div class="form-row">
+		<div class="col-md-3 mb-6">
+			<label for="nom">Nom</label><input id="nom" type="text" class="form-control" disabled value="{{user.username}}">
+		</div>
+		<div class="col-md-1 mb-6"></div>
+		<div class="col-md-4 mb-6">
+			<label for="email">E-mail</label><input id="email" type="text" class="form-control" disabled value="{{user.email}}">
+		</div>
+		<div class="col-md-1 mb-6"></div>
+		<div class="col-md-2 mb-6">
+			<label for="type">Type</label><input id="type" type="text" class="form-control" disabled value="{{user.type}}">
+		</div>
+		<div class="col-md-1 mb-6"></div>
+	</div>
+	<br>
+	<br>
+	<div class="form-row">
+		<div class="col-md-2 mb-6">
+			<label for="telephone">Télephone n°</label><input id="telephone" type="text" class="form-control" disabled value="{{user.telephone}}">
+		</div>
+		<div class="col-md-2 mb-6"></div>
+		<div class="col-md-3 mb-6">
+			<label for="cin">Carte d'identité n°</label><input id="cin" type="text" class="form-control" disabled value="{{user.cin}}">
+		</div>
+		<div class="col-md-1 mb-6"></div>
+		<div class="col-md-3 mb-6">
+			<label for="matricule">Matricule fiscal n°</label><input id="matricule" type="text" class="form-control" disabled value="{{user.matricule}}">
+		</div>
+		<div class="col-md-1 mb-6"></div>
+	</div>
+	<br>
+	<br>
+	<div class="form-row">
+		<div class="col-md-2 mb-4">
+			<label for="zip">Code Postal n°</label><input id="zip" type="text" class="form-control" disabled value="{{user.zip}}">
+		</div>
+		<div class="col-md-1 mb-4"></div>
+		<div class="col-md-2 mb-4">
+			<label for="city">Ville</label><input id="city" type="text" class="form-control" disabled value="{{user.city}}">
+		</div>
+		<div class="col-md-1 mb-4"></div>
+		<div class="col-md-6 mb-4">
+			<label for="adresse">Adresse</label>
+			<textarea id="adresse" class="form-control" disabled value="{{user.adresse}}"></textarea>
+		</div>
+	</div>
+{% endblock %}

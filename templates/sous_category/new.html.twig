@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Sous Category
+{% endblock %}
+
+{% block body %}
+	<h1>Create new Sous Category</h1>
+
+	{{ include('sous_category/_form.html.twig') }}
+
+	<a href="{{ path('sous_category_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1>Sous Category</h1>
+	<a class="btn-save btn btn-default btn-sm btn-rounded" href="{{ path('sous_category_index') }}" alt="retour">
+		<i class="far fa-hand-point-left"></i>
+	</a>
+	<a class="btn-save btn btn-default btn-sm btn-rounded" href="{{ path('sous_category_edit', {'id': sous_category.id}) }}">
+		<i class="far fa-edit"></i>
+	</a>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Name</th>
+				<td>{{ sous_category.name }}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ sous_category.description }}</td>
+			</tr>
+			<tr>
+				<th>Image</th>
+				<td>
+					<div class="row">
+						<div class="col-md-12">
+							<div id="mdb-lightbox-ui"></div>
+							<figure class="col-md-4">
+								{% if sous_category.filename %}
+									<a href="/images/products/{{sous_category.filename}}" data-size="1600x1067">
+										<img src="/images/products/{{sous_category.filename}}" alt="placeholder" class="img-fluid">
+									</a>
+								{% else %}
+									<a href="/images/products/{{sous_category.filename}}" data-size="1600x1067">
+										<img src="/images/products/{{sous_category.filename}}" alt="placeholder" class="img-fluid">
+									</a>
+								{% endif %}
+							</figure>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+{% endblock %}
+
+{% block script %}
+	<script>
+		// MDB Lightbox Init
+$(function () {
+$("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+});
+	</script>
+
+{% endblock %}

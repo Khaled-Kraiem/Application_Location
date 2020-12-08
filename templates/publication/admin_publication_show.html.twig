@@ -1,0 +1,167 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<h3>Caractéristique d'offre</h3>
+
+	<div
+		class="container my-5 py-5 z-depth-1">
+		<!--Section: Content-->
+		<section
+			class="px-md-5 mx-md-5 dark-grey-text text-center text-lg-left">
+
+			<!--Grid row-->
+			<div
+				class="row">
+
+				<!--Grid column-->
+				<div class="col-lg-6 mb-4 mb-lg-0 d-flex align-items-center justify-content-center">
+
+					{% if publication.filename %}
+						<img src="/images/products/{{publication.filename}}" widht="200" height="200">
+
+					{% else %}
+						<img src="/images/public/no-image.png" class="img-fluid" widht="60" height="60" class="img-fluid">
+					{% endif %}
+				</div>
+				<!--Grid column-->
+
+				<!--Grid column-->
+				<div class="col-lg-6 mb-4 mb-lg-0">
+
+					<h3 class="font-weight-bold">
+						<i class="fas fa-exclamation"></i>
+						Type de produit :
+						{{ publication.sousCategory.name }}
+					</h3>
+
+					<h5 class="font-weight-bold">
+						<i class="fas fa-bullhorn"></i>
+						Publié le :
+						{{ publication.createdAt ? publication.createdAt|date('Y-m-d H:i:s') : '' }}
+					</h5>
+
+					{% if publication.disponibilite == 1 %}
+						<p class="font-weight-bold">
+							<i class="far fa-check-circle"></i>
+							il est toujours disponible
+						</p>
+					{% else %}
+						<p class="font-weight-bold">
+							<i class="fas fa-times"></i>
+							il a été loué
+						</p>
+					{% endif %}
+
+					<p class="text-muted">
+						<b>Caractéristiques de produit:</b>
+						{{ publication.description }}
+					</p>
+
+					Prix :
+					{{ publication.prix }}
+					DNT
+					<i class="fas fa-hand-holding-usd"></i>
+				</div>
+				<!--Grid column-->
+			</div>
+			<!--Grid row-->
+		</section>
+		<!--Section: Content-->
+	</div>
+
+	<h3>Caractéristique de propriétaire</h3>
+
+	<div
+		class="container my-5 py-5 z-depth-1">
+		<!--Section: Content-->
+		<section
+			class="">
+			<!--Grid row-->
+			<div
+				class="row">
+				<!--Grid column-->
+				<div class="col-lg-6 mb-4 mb-lg-0">
+
+					<h5 class="font-weight-bold">
+						<i class="fas fa-user-alt"></i>
+						Nom  :
+						{{ publication.publicateur.username }}
+					</h5>
+
+					<h5 class="font-weight-bold">
+						<i class="fas fa-at"></i>
+						E-mail :
+						{{publication.publicateur.email }}
+					</h5>
+
+					<h5 class="font-weight-bold">
+						<i class="fas fa-mobile-alt"></i>
+						Téléphone :
+						{{publication.publicateur.telephone }}
+					</h5>
+
+					{% if publication.publicateur.type == 'Locateur' %}
+						<h5 class="font-weight-bold">
+							<i class="far fa-address-card"></i>
+							Carte d'identité N°:
+							{{publication.publicateur.cin }}
+						</h5>
+					{% else %}
+						<h5 class="font-weight-bold">
+							<i class="fas fa-address-card"></i>
+							Matricule N°:
+							{{publication.publicateur.matricule }}
+						</h5>
+					{% endif %}
+				</div>
+				<!--Grid column-->
+
+				<!--Grid column-->
+				<div class="col-lg-6 mb-4 mb-lg-0">
+
+					<h6 class="font-weight-bold">
+						<i class="fas fa-map-marker-alt"></i>
+						Adresse de propriétaire :<br>
+						{{ publication.publicateur.city }}
+						,
+						{{ publication.publicateur.adresse }}
+						[{{ publication.publicateur.zip }}]
+					</h6>
+				</div>
+				<!--Grid column-->
+			</div>
+			<!--Grid row-->
+		</section>
+		<!--Section: Content-->
+	</div>
+
+	<div class="form-row">
+		<div class="col-md-2 mb-5"></div>
+		<div class="col-md-2 mb-5"></div>
+		<div class="col-md-2 mb-5"></div>
+		<div class="col-md-3 mb-5"></div>
+		<div class="col-md-3 mb-5">
+			<a href="{{ path('admin_gestion_publications') }}" class="btn-save btn btn-default btn-sm btn-rounded">
+				<i class="far fa-hand-point-left"></i>
+			</a>
+			{% if publication.visible == 1 %}
+				<a href="{{ path('admin_gestion_visibilite', {'id': publication.id}) }}" class="btn-save btn btn-primary btn-sm btn-rounded">
+					<i class="far fa-eye-slash"></i>
+				</a>
+			{% else %}
+				<a href="{{ path('admin_gestion_visibilite', {'id': publication.id}) }}" class="btn-save btn btn-primary btn-sm btn-rounded">
+					<i class="far fa-eye"></i>
+				</a>
+			{% endif %}
+			{% if publication.disponibilite == 1 %}
+				<a href="{{ path('admin_gestion_disponibilite', {'id': publication.id}) }}" class="btn-save btn btn-primary btn-sm btn-rounded">
+					<i class="fas fa-times"></i>
+				</a>
+			{% else %}
+				<a href="{{ path('admin_gestion_disponibilite', {'id': publication.id}) }}" class="btn-save btn btn-primary btn-sm btn-rounded">
+					<i class="fas fa-check"></i>
+				</a>
+			{% endif %}
+		</div>
+	{% endblock %}

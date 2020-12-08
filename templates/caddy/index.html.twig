@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<!--Grid row-->
+	<div class="row">
+		{% for caddy in caddies %}
+			<!--Grid column-->
+			<div
+				class="col-md-6 mb-4">
+
+				<!-- Card -->
+				<div class="card gradient-card">
+
+					<div
+						class="card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg)">
+
+						<!-- Content -->
+						<a href="{{ path('caddy_show', {'id': caddy.id}) }}">
+							<div class="text-white d-flex h-100 mask blue-gradient-rgba">
+								<div class="first-content align-self-center p-3">
+									<h3 class="card-title">{{ caddy.produit.sousCategory.catergory.description }}</h3>
+									<p class="lead mb-0">Cliquez sur cette carte pour voir les détails</p>
+								</div>
+								<div class="second-content align-self-center mx-auto text-center">
+									<i class="far fa-money-bill-alt fa-3x"></i>
+								</div>
+							</div>
+						</a>
+
+					</div>
+
+					<!-- Data -->
+					<div class="third-content ml-auto mr-4 mb-2">
+						<p class="text-uppercase text-muted">Prix souhaité</p>
+						<h4 class="font-weight-bold float-right">{{ caddy.produit.prix }}
+							DNT</h4>
+					</div>
+
+					<!-- Content -->
+					<div class="card-body white">
+						<div class="progress md-progress">
+							<div class="progress-bar bg-primary" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+						<p class="text-muted">Le produit à louer :
+							{{caddy.produit.sousCategory.name}}</p>
+						<h4 class="text-uppercase font-weight-bold my-4">DÉTAILS</h4>
+						<p class="text-muted" align="justify">
+							{{caddy.produit.description}}.</p>
+
+					</div>
+					{{ include('caddy/_delete_form.html.twig') }}
+				</div>
+				<!-- Card -->
+
+			</div>
+			<!--Grid column-->
+
+		{% else %}
+			<!-- Card -->
+			<div class="card gradient-card">
+				<div
+					class="card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg)">
+					<!-- Content -->
+					<div class="text-white d-flex h-100 mask blue-gradient-rgba">
+						<div class="first-content align-self-center p-3">
+							<h3 class="card-title">************************</h3>
+							<p class="lead mb-0">Aucune demande de location ... !!</p>
+						</div>
+						<div class="second-content align-self-center mx-auto text-center">
+							<i class="far fa-money-bill-alt fa-3x"></i>
+						</div>
+					</div>
+				</div>
+
+				<!-- Data -->
+				<div class="third-content ml-auto mr-4 mb-2">
+					<p class="text-uppercase text-muted">Prix souhaité</p>
+					<h4 class="font-weight-bold float-right">0.0000																																		DNT</h4>
+				</div>
+
+				<!-- Content -->
+				<div class="card-body white">
+					<div class="progress md-progress">
+						<div class="progress-bar bg-primary" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+					<p class="text-muted">Le produit à louer : ************
+					</p>
+					<h4 class="text-uppercase font-weight-bold my-4">DÉTAILS</h4>
+					<p class="text-muted" align="justify">
+						************.</p>
+				</div>
+				<a href="{{ path('offres_disponible') }}" class="btn-save btn btn-success btn-sm btn-rounded">
+					<i class="far fa-hand-point-left"></i>
+					L'espace des offres
+				</a>
+			</div>
+			<!-- Card -->
+
+		{% endfor %}
+
+
+	</div>
+	<!--Grid row-->
+{% endblock %}

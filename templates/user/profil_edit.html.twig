@@ -1,0 +1,63 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	{{ form_start(form) }}
+	<div class="row">
+		<button type="submit" class="btn-save btn btn-success btn-sm btn-rounded">
+			<i class="fas fa-save"></i>
+		</button>
+	</div>
+	<br>
+	<div class="form-row">
+		<div class="col-md-2 mb-5">
+			Nom:
+			{{ form_widget(form.username) }}
+		</div>
+		<div class="col-md-1 mb-5"></div>
+		<div class="col-md-4 mb-5">
+			E-mail:
+			{{ form_widget(form.email) }}
+		</div>
+		<div class="col-md-2 mb-5"></div>
+		<div class="col-md-3 mb-5">
+			Type:
+			{{ form_widget(form.type) }}
+		</div>
+	</div>
+	<br>
+	<div class="form-row">
+		<div class="col-md-2 mb-6">
+			Télephone n°:
+			{{ form_widget(form.telephone) }}
+		</div>
+		<div class="col-md-2 mb-6"></div>
+		<div class="col-md-3 mb-6">
+			Carte d'identité n°:
+			{{ form_widget(form.cin) }}
+		</div>
+		<div class="col-md-1 mb-6"></div>
+		<div class="col-md-3 mb-6">
+			Matricule fiscal n°:
+			{{ form_widget(form.matricule) }}
+		</div>
+		<div class="col-md-1 mb-6"></div>
+	</div>
+	<br>
+	<br>
+	<div class="form-row">
+		<div class="col-md-2 mb-4">
+			Code Postal n°:
+			{{ form_widget(form.zip) }}
+		</div>
+		<div class="col-md-1 mb-4"></div>
+		<div class="col-md-2 mb-4">
+			Ville:
+			{{ form_widget(form.city) }}
+		</div>
+		<div class="col-md-1 mb-4"></div>
+		<div class="col-md-6 mb-4">
+			Adresse:
+			{{ form_widget(form.adresse) }}
+		</div>
+	</div>
+	{{ form_end(form) }}
+{% endblock %}

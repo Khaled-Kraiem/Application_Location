@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<h1>Publication</h1>
+	<div
+		class="container my-5 py-5 z-depth-1">
+
+
+		<!--Section: Content-->
+		<section
+			class="px-md-5 mx-md-5 dark-grey-text text-center text-lg-left">
+
+			<!--Grid row-->
+			<div
+				class="row">
+
+				<!--Grid column-->
+				<div class="col-lg-6 mb-4 mb-lg-0 d-flex align-items-center justify-content-center">
+
+					{% if publication.filename %}
+						<img src="/images/products/{{publication.filename}}" widht="200" height="200">
+
+					{% else %}
+						<img src="/images/public/no-image.png" class="img-fluid" widht="60" height="60" class="img-fluid">
+					{% endif %}
+				</div>
+				<!--Grid column-->
+
+				<!--Grid column-->
+				<div class="col-lg-6 mb-4 mb-lg-0">
+
+					<h3 class="font-weight-bold">
+						<i class="fab fa-product-hunt"></i>
+						Type de produit
+						{{ publication.sousCategory.name }}
+					</h3>
+
+					<h5 class="font-weight-bold">
+						<i class="fas fa-bullhorn"></i>
+						Publié le :
+						{{ publication.createdAt ? publication.createdAt|date('Y-m-d H:i:s') : '' }}
+					</h5>
+
+					{% if publication.disponibilite == 1 %}
+						<p class="font-weight-bold">
+							<i class="far fa-check-circle"></i>
+							il est toujours disponible
+						</p>
+					{% else %}
+						<p class="font-weight-bold">
+							<i class="fas fa-times"></i>
+							il a été loué
+						</p>
+					{% endif %}
+				</p>
+
+				<p class="text-muted">
+					<b>Caractéristiques de produit :</b>
+					{{ publication.description }}
+				</p>
+
+				Prix :
+				{{ publication.prix }}
+				DNT
+				<i class="fas fa-hand-holding-usd"></i>
+			</a>
+
+		</div>
+		<!--Grid column-->
+
+	</div>
+	<!--Grid row-->
+
+
+</section></div><div class="form-row">
+<div class="col-md-2 mb-6"></div>
+<div class="col-md-2 mb-6"></div>
+<div class="col-md-2 mb-6"></div>
+<div class="col-md-2 mb-6"></div>
+<div class="col-md-2 mb-6"></div>
+<div class="col-md-2 mb-6">
+	<a href="{{ path('publication_index') }}" class="btn-save btn btn-default btn-sm btn-rounded">
+		<i class="far fa-hand-point-left"></i>
+	</a>
+	<a href="{{ path('publication_edit', {'id': publication.id}) }}" class="btn-save btn btn-success btn-sm btn-rounded">
+		<i class="far fa-edit"></i>
+	</a>
+	{{ include('publication/_delete_form.html.twig') }}
+</div>{% endblock %}

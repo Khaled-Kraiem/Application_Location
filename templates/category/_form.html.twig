@@ -1,0 +1,57 @@
+{% block stylesheet %}
+
+	<style>
+		.avatar-pic {
+			width: 150px;
+		}
+	</style>
+{% endblock %}
+
+{{ form_start(form) }}
+
+<div class="form-row">
+	<div class="col-md-3 mb-4">{{ form_widget(form.name) }}</div>
+	<div class="col-md-3 mb-4"></div>
+
+	<div class="col-md-1 mb-4"></div>
+	<div class="col-md-5 mb-4">{{ form_widget(form.description) }}</div>
+</div>
+<br><br>
+<div class="form-row">
+	<div class="col-md-2 mb-4"></div>
+	<div class="col-md-2 mb-4"></div>
+	<div class="col-md-6 mb-4">
+		<div class="file-field">
+			<div class="mb-4">
+				<img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" class="rounded-circle z-depth-1-half avatar-pic" alt="example placeholder avatar">
+			</div>
+			<div class="d-flex justify-content-center">
+				<div class="btn btn-mdb-color btn-rounded float-left">
+					{{ form_widget(form.imageFile) }}
+					<span>Add photo</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2 mb-4"></div>
+</div>
+
+<br><br>
+<div class="form-row">
+	<div class="col-md-2 mb-6"></div>
+	<div class="col-md-2 mb-6"></div>
+	<div class="col-md-2 mb-6"></div>
+	<div class="col-md-2 mb-6"></div>
+	<div class="col-md-2 mb-6"></div>
+	<div class="col-md-2 mb-6">
+		<a href="{{ path('category_index') }}" class="btn-save btn btn-default btn-sm btn-rounded">
+			<i class="far fa-hand-point-left"></i>
+		</a>
+		<button type="submit" class="btn-save btn btn-success btn-sm btn-rounded">
+			<i class="fas fa-save"></i>
+		</button>
+
+	</div>
+</div>
+
+{{ form_end(form) }}

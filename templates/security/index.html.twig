@@ -1,0 +1,354 @@
+{% extends 'base.html.twig' %}
+{% block title %}Location
+{% endblock %}
+
+{% block body %}
+	{% if not app.user %}
+		<div
+			class="container my-5">
+			<!-- Section: Block Content -->
+			<section>
+				<div
+					class="row">
+					<!-- New Products -->
+					<div class="col-lg-4 col-md-12">
+						<h4 class="text-center font-weight-bold dark-grey-text mb-5">
+							<strong>
+								Catégories des nos offres de location
+								<br>
+								<i class="fas fa-shopping-cart"></i>
+							</strong>
+						</h4>
+						<!-- Card -->
+						{% for sc in souscategories  %}
+							<div class="card hoverable mb-4">
+								<div class="card-body">
+									<div class="row align-items-center">
+										<div class="col-3 px-0">
+											<a>
+												{% if sc.filename %}
+													<a>
+														<img src="images/products/{{sc.filename}}" class="img-fluid">
+													</a>
+												{% else %}
+													<a>
+														<img src="images/public/no-image.png" class="img-fluid">
+													</a>
+												{% endif %}
+											</a>
+										</div>
+										<div class="col-6">
+											<a>
+												<strong>{{sc.name}}</strong>
+											</a>
+											<h6 class="h6-responsive font-weight-bold dark-grey-text">
+												<strong>{{sc.description}}</strong>
+											</h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+						<!-- Card -->
+					</div>
+					<!-- New Products -->
+
+					<!-- Top Sellers -->
+					<div class="col-lg-4 col-md-12">
+
+						<h4 class="text-center font-weight-bold dark-grey-text mb-5">
+							<strong>
+								<i class="fas fa-sign-in-alt"></i>
+							</strong>
+						</h4>
+						<!-- Card -->
+						-----------------
+						<!-- Card -->
+					</div>
+					<!-- Top Sellers -->
+
+					<!-- Random Products -->
+					<div class="col-lg-4 col-md-12">
+
+						<h4 class="text-center font-weight-bold dark-grey-text mb-5">
+							<strong>
+								Nos offres de location
+								<br>
+								<i class="fas fa-bullhorn"></i>
+							</strong>
+
+						</h4>
+
+						<!-- Card -->
+						<div class="card hoverable mb-4">
+							<div class="card-body">
+								<div class="row align-items-center">
+									<div class="col-6 px-0">
+										<a>
+											<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/7.jpg" class="img-fluid">
+										</a>
+									</div>
+									<div class="col-6">
+										<a>
+											<strong>Dell 786i</strong>
+										</a>
+										<ul class="rating inline-ul">
+											<li>
+												<i class="fas fa-star blue-text"></i>
+											</li>
+											<li>
+												<i class="fas fa-star blue-text"></i>
+											</li>
+											<li>
+												<i class="fas fa-star blue-text"></i>
+											</li>
+											<li>
+												<i class="fas fa-star blue-text"></i>
+											</li>
+											<li>
+												<i class="fas fa-star grey-text"></i>
+											</li>
+										</ul>
+										<h6 class="h6-responsive font-weight-bold dark-grey-text">
+											<strong>$749</strong>
+											<span class="grey-text">
+												<small>
+													<s>$889</s>
+												</small>
+											</span>
+										</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Card -->
+
+					</div>
+					<!-- Random Products -->
+				</div>
+			</section>
+			<!-- Section: Block Content -->
+
+		</div>
+	{% endif %}
+	{% if (app.user) %}
+		{% if ( is_granted ('ROLE_ADMIN')) %}
+
+			<div
+				class="container my-5 py-5 z-depth-1">
+				<!--Section: ROLE_ADMIN Content-->
+				<h1>Dashboard Admin Page</h1>
+				<!-- Section: Blog v.4 -->
+				<div
+					class="container my-5 py">
+
+
+					<!--Section: Block Content-->
+					<section>
+
+						<div class="card indigo">
+							<div class="card-body">
+
+								<p class="h5 white-text pb-4 mb-3">
+									<i class="fas fa-chart-pie px-2"></i>Sales Chart</p>
+
+								<canvas id="lineChart1" class="mb-4" height="100"></canvas>
+
+							</div>
+
+							<div
+								class="card-body white">
+
+								<!--Grid row-->
+								<div
+									class="row text-center text-muted my-2">
+
+									<!--Grid column-->
+									<div class="col-md-4 mb-4 mb-md-0">
+
+										<span class="min-chart mt-0 mb-3" id="chart-pageviews" data-percent="86">
+											<span class="percent"></span>
+										</span>
+										<p class="small mb-md-0">Mail-Orders</p>
+
+									</div>
+									<!--Grid column-->
+
+									<!--Grid column-->
+									<div class="col-md-4 mb-4 mb-md-0">
+
+										<span class="min-chart mt-0 mb-3" id="chart-sales" data-percent="54">
+											<span class="percent"></span>
+										</span>
+										<p class="small mb-md-0">Online</p>
+
+									</div>
+									<!--Grid column-->
+
+									<!--Grid column-->
+									<div class="col-md-4 mb-0">
+
+										<span class="min-chart mt-0 mb-3" id="chart-downloads" data-percent="72">
+											<span class="percent"></span>
+										</span>
+										<p class="small mb-0">In-Store</p>
+
+									</div>
+									<!--Grid column-->
+
+								</div>
+								<!--Grid row-->
+
+							</div>
+						</div>
+					</section>
+					<!--Section: Block Content-->
+				</div>
+				<!-- Section: Blog v.4 -->
+			</div>
+		{% else %}
+			<!--Section: ROLE_LOCATEUR  Content-->
+			<div class="container py-5 my-5 z-depth-1">
+				<section class="p-md-3 mx-md-5 text-lg-left">
+					<div class="row">
+						<div class="col-12">
+							<h2 class="font-weight-bold mb-3">Features</h2>
+							<p class="lead py-3">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eufugiat.
+							</p>
+							<a class="blue-text font-weight-bold" href="#">
+								Début de page
+								<i class="fas fa-angle-double-up"></i>
+							</a>
+						</div>
+					</div>
+					<div class="row mt-5">
+						<div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
+							<div class=" mt-3 text-center">
+								<i class="fa fa-map-marker-alt fa-3x indigo-text mb-4"></i>
+								<h4 class="font-weight-bold">Feature 1</h4>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
+							<div class=" mt-3 text-center">
+								<i class="far fa-map fa-3x pink-text mb-4"></i>
+								<h4 class="font-weight-bold">Feature 2</h4>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 mb-md-0 mb-5">
+							<div class=" mt-3 text-center">
+								<i class="fa fa-globe-africa fa-3x amber-text mb-4"></i>
+								<h4 class="font-weight-bold">Feature 3</h4>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 mb-md-0 mb-5">
+							<div class=" mt-3 text-center">
+								<i class="fa fa-street-view fa-3x green-text mb-4"></i>
+								<h4 class="font-weight-bold">Feature 4</h4>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!--Section: Content-->
+		{% endif %}
+	{% endif %}
+{% endblock %}
+
+{% block script %}
+	<script>
+		var ctxL = document.getElementById("lineChart1").getContext('2d');
+var myLineChart = new Chart(ctxL, {
+type: 'line',
+data: {
+labels: [
+"January",
+"February",
+"March",
+"April",
+"May",
+"June",
+"July",
+"August",
+"September",
+"October"
+],
+datasets: [
+{
+pointBackgroundColor: '#fff',
+backgroundColor: 'transparent',
+borderColor: 'rgba(255, 255, 255)',
+data: [
+2500,
+2550,
+5000,
+3100,
+7000,
+5500,
+4950,
+16000,
+10500,
+8000
+]
+}
+]
+},
+options: {
+legend: {
+display: false
+},
+scales: {
+xAxes: [
+{
+gridLines: {
+display: false,
+color: "transparent",
+zeroLineColor: "transparent"
+},
+ticks: {
+fontColor: "#fff"
+}
+}
+],
+yAxes: [
+{
+display: true,
+gridLines: {
+display: true,
+drawBorder: false,
+color: "rgba(255,255,255,.25)",
+zeroLineColor: "rgba(255,255,255,.25)"
+},
+ticks: {
+fontColor: "#fff",
+beginAtZero: true,
+stepSize: 5000
+}
+}
+]
+}
+}
+});
+// Minimalist charts
+$(function () {
+$('.min-chart#chart-pageviews').easyPieChart({
+barColor: "#3059B0",
+onStep: function (from, to, percent) {
+$(this.el).find('.percent').text(Math.round(percent));
+}
+});
+$('.min-chart#chart-downloads').easyPieChart({
+barColor: "#3059B0",
+onStep: function (from, to, percent) {
+$(this.el).find('.percent').text(Math.round(percent));
+}
+});
+$('.min-chart#chart-sales').easyPieChart({
+barColor: "#3059B0",
+onStep: function (from, to, percent) {
+$(this.el).find('.percent').text(Math.round(percent));
+}
+});
+});
+	</script>
+{% endblock %}

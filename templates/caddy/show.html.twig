@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Caddy
+{% endblock %}
+
+{% block body %}
+	<div class="row row-cols-1 row-cols-md-3">
+
+		<div
+			class="col mb-4">
+			<!-- Card -->
+			<div
+				class="card">
+
+				<!--Card image-->
+				<div class="view overlay">
+					{% if caddy.produit.filename %}
+						<img src="/images/products/{{caddy.produit.filename}}" height="800" class="card-img-top">
+						<a href="#!">
+							<div class="mask rgba-white-slight"></div>
+						</a>
+					{% else %}
+						<img src="/images/public/no-image.png" height="250" class="card-img-top">
+
+					{% endif %}
+
+
+				</div>
+
+				<!--Card content-->
+				<div
+					class="card-body">
+
+					<!--Title-->
+					<h4 class="card-title">
+						<b>Caractéristiques de produit :</b>
+					</h4>
+					<!--Text-->
+					<p class="card-text text-muted">
+						{{ caddy.produit.description }}
+					</p>
+					<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+					<a href="{{ path('caddy_index') }}" class="btn-save btn btn-default btn-sm btn-rounded">
+						<i class="far fa-hand-point-left"></i>
+					</a>
+				</div>
+			</div>
+			<!-- Card -->
+		</div>
+
+	</div>
+{% endblock %}

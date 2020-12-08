@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Caddy{% endblock %}
+
+{% block body %}
+    <h1>Edit Caddy</h1>
+
+    {{ include('caddy/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('caddy_index') }}">back to list</a>
+
+    {{ include('caddy/_delete_form.html.twig') }}
+{% endblock %}

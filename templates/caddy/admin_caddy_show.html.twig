@@ -1,0 +1,209 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<h3>Caractéristique de Propriétaire / Locateur</h3>
+
+	<div
+		class="container my-5 py-5 z-depth-1">
+		<!--Section: Content-->
+		<section
+			class="">
+			<!--Grid row-->
+			<div
+				class="row">
+				<!--Grid column-->
+				<div class="col-lg-6 mb-4 mb-lg-0">
+
+					<h5 class="font-weight-bold">
+						<i class="fas fa-award"></i>
+						Caractéristique de Propriétaire
+					</h5>
+
+					<h6 class="font-weight-bold">
+						<i class="fas fa-user-alt"></i>
+						Nom  :
+						{{ caddy.locateur.username }}
+					</h6>
+
+					<h6 class="font-weight-bold">
+						<i class="fas fa-at"></i>
+						E-mail :
+						{{caddy.locateur.email }}
+					</h6>
+
+					<h6 class="font-weight-bold">
+						<i class="fas fa-mobile-alt"></i>
+						Téléphone :
+						{{caddy.locateur.telephone }}
+					</h6>
+
+					{% if caddy.locateur.type == 'Locateur' %}
+						<h6 class="font-weight-bold">
+							<i class="far fa-address-card"></i>
+							Carte d'identité N°:
+							{{caddy.locateur.cin }}
+						</h6>
+					{% else %}
+						<h6 class="font-weight-bold">
+							<i class="fas fa-address-card"></i>
+							Matricule N°:
+							{{caddy.locateur.matricule }}
+						</h6>
+					{% endif %}
+
+					<h6 class="font-weight-bold">
+						<i class="fas fa-map-marker-alt"></i>
+						Adresse de propriétaire :<br>
+						{{ caddy.locateur.city }}
+						,
+						{{ caddy.locateur.adresse }}
+						[{{ caddy.locateur.zip }}]
+					</h6>
+				</div>
+				<!--Grid column-->
+
+				<!--Grid column-->
+				<div class="col-lg-6 mb-4 mb-lg-0">
+
+					<h5 class="font-weight-bold">
+						<i class="fas fa-award"></i>
+						Caractéristique de demandeur de location
+					</h5>
+
+					<h6 class="font-weight-bold">
+						<i class="fas fa-user-alt"></i>
+						Nom  :
+						{{ caddy.produit.publicateur.username }}
+					</h6>
+
+					<h6 class="font-weight-bold">
+						<i class="fas fa-at"></i>
+						E-mail :
+						{{caddy.produit.publicateur.email }}
+					</h6>
+
+					<h6 class="font-weight-bold">
+						<i class="fas fa-mobile-alt"></i>
+						Téléphone :
+						{{caddy.produit.publicateur.telephone }}
+					</h6>
+
+					{% if caddy.produit.publicateur.type == 'Locateur' %}
+						<h6 class="font-weight-bold">
+							<i class="far fa-address-card"></i>
+							Carte d'identité N°:
+							{{caddy.produit.publicateur.cin }}
+						</h6>
+					{% else %}
+						<h6 class="font-weight-bold">
+							<i class="fas fa-address-card"></i>
+							Matricule N°:
+							{{caddy.produit.publicateur.matricule }}
+						</h6>
+					{% endif %}
+
+					<h6 class="font-weight-bold">
+						<i class="fas fa-map-marker-alt"></i>
+						Adresse de propriétaire :<br>
+						{{ caddy.produit.publicateur.city }}
+						,
+						{{ caddy.produit.publicateur.adresse }}
+						[{{ caddy.produit.publicateur.zip }}]
+					</h6>
+				</div>
+			</div>
+			<!--Grid column-->
+		</div>
+		<!--Grid row-->
+	</section>
+	<!--Section: Content-->
+</div>
+
+<h3>Caractéristique de Produit</h3>
+
+<div
+	class="container my-5 py-5 z-depth-1">
+	<!--Section: Content-->
+	<section
+		class="px-md-5 mx-md-5 dark-grey-text text-center text-lg-left">
+
+		<!--Grid row-->
+		<div
+			class="row">
+
+			<!--Grid column-->
+			<div class="col-lg-6 mb-4 mb-lg-0 d-flex align-items-center justify-content-center">
+
+				{% if caddy.produit.filename %}
+					<img src="/images/products/{{caddy.produit.filename}}" widht="200" height="200">
+				{% else %}
+					<img src="/images/public/no-image.png" class="img-fluid" widht="60" height="60" class="img-fluid">
+				{% endif %}
+			</div>
+			<!--Grid column-->
+
+			<!--Grid column-->
+			<div class="col-lg-6 mb-4 mb-lg-0">
+
+				<h3 class="font-weight-bold">
+					<i class="fas fa-exclamation"></i>
+					Type de produit :
+					{{ caddy.produit.sousCategory.name }}
+				</h3>
+
+				<h5 class="font-weight-bold">
+					<i class="fas fa-bullhorn"></i>
+					Publié le :
+					{{ caddy.produit.createdAt ? caddy.produit.createdAt|date('Y-m-d H:i:s') : '' }}
+				</h5>
+
+				{% if caddy.produit.disponibilite == 1 %}
+					<p class="font-weight-bold">
+						<i class="far fa-check-circle"></i>
+						il est toujours disponible
+					</p>
+				{% else %}
+					<p class="font-weight-bold">
+						<i class="fas fa-times"></i>
+						il a été loué
+					</p>
+				{% endif %}
+
+				<p class="text-muted">
+					<b>Caractéristiques de produit :</b>
+					{{ caddy.produit.description }}
+				</p>
+
+				Prix :
+				{{ caddy.produit.prix }}
+				DNT
+				<i class="fas fa-hand-holding-usd"></i>
+			</div>
+			<!--Grid column-->
+		</div>
+		<!--Grid row-->
+	</section>
+	<!--Section: Content-->
+</div>
+
+<div class="form-row">
+	<div class="col-md-2 mb-5"></div>
+	<div class="col-md-2 mb-5"></div>
+	<div class="col-md-2 mb-5"></div>
+	<div class="col-md-3 mb-5"></div>
+	<div class="col-md-3 mb-5">
+		<a href="{{ path('admin_gestion_publications') }}" class="btn-save btn btn-default btn-sm btn-rounded">
+			<i class="far fa-hand-point-left"></i>
+		</a>
+		{% if caddy.produit.disponibilite == 1 %}
+			<a href="{{ path('admin_confirme', {'id': caddy.id}) }}" class="btn-save btn btn-primary btn-sm btn-rounded">
+				<i class="far fa-handshake"></i>
+			</a>
+		{% else %}
+			<a href="{{ path('admin_confirme', {'id': caddy.id}) }}" class="btn-save btn btn-primary btn-sm btn-rounded">
+				<i class="fas fa-hands"></i>
+			</a>
+		{% endif %}
+	</div>
+{% endblock %}
